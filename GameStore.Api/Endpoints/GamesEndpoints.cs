@@ -13,21 +13,20 @@ public static class GamesEndpoints
     ];
 
     public static void MapGamesEndpoints(this WebApplication app) {
-        app.MapGet("/", () => "Goodbye, cruel world!");
-
+        var group = app.MapGroup("/games");
 
         // GET /games
-        app.MapGet("/games", () => games);
+        group.MapGet("/", () => games);
 
 
         // GET /games/id
-        app.MapGet("/games/{id}", (int id) => {
+        group.MapGet("/{id}", (int id) => {
             var game = games.Find(game => game.Id == id);
             return game is null ? Results.NotFound() : Results.Ok(game);
         }).WithName(GetGameEndPointName);
 
         // POST /games
-        app.MapPost("/games", (CreateGameDto newGame) =>
+        group.MapPost("/", (CreateGameDto newGame) =>
         {
             GameDto game = new(games.Count + 1, newGame.Name, newGame.Genre, newGame.Price, newGame.ReleaseDate);
 
@@ -37,7 +36,7 @@ public static class GamesEndpoints
         });
 
         // PUT /games/1
-        app.MapPut("/games/{id}", (int id, UpdateGameDto updatedGame) =>
+        group.MapPut("/{id}", (int id, UpdateGameDto updatedGame) =>
         {
             var idx = games.FindIndex(game => game.Id == id);
 
@@ -49,7 +48,7 @@ public static class GamesEndpoints
         });
 
         // DELETE /games
-        app.MapDelete("/games/{id}", (int id) =>
+        group.MapDelete("/{id}", (int id) =>
         {
             games.RemoveAll(game => game.Id == id);
 
