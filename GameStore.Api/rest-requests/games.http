@@ -1,0 +1,30 @@
+GET http://localhost:5116
+
+#GET http://localhost:5116/games
+
+#GET http://localhost:5116/games/2
+
+#POST http://localhost:5116/games
+Content-Type: application/json
+{
+    "name": "Super Mario Bros. Wonder",
+    "genre": "Platformer",
+    "price": 59.99,
+    "releaseDate": "2023-10-19"
+}
+
+# before
+#GET http://localhost:5116/games/1
+
+PUT http://localhost:5116/games/7
+{
+    "name": "Teenage Mutant Ninja Turtles",
+    "genre": "RPG, Fight",
+    "price": 78.99,
+    "releaseDate": "2002-10-14"
+}
+
+# after
+#GET http://localhost:5116/games/1
+
+#DELETE http://localhost:5116/games/1
