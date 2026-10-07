@@ -1,0 +1,6 @@
+POST http://localhost:5116/games
+{
+    "genre": "Platformer",
+    "price": 59.99,
+    "releaseDate": "2023-10-19"
+}
