@@ -14,4 +14,6 @@ app.MapGet("/", () => "Goodbye, cruel world!");
 
 app.MapGamesEndpoints();
 
+app.MigrateDb();
+
 app.Run();
