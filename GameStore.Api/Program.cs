@@ -11,6 +11,7 @@ var app = builder.Build();
 app.MapGet("/", () => "Goodbye, cruel world!");
 
 app.MapGamesEndpoints();
+app.MapGenresEndpoints();
 
 app.MigrateDb();
 
